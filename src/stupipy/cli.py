@@ -2,7 +2,7 @@ import click
 from stupipy import structure as struts
 from stupipy import constants
 from stupipy import content
-from stupipy import licenses
+from stupipy import license
 from click import echo
 from datetime import date
 
@@ -24,15 +24,14 @@ def base():
 
 @click.command()
 @click.option(
-    '--license', '-l',
-    help=constants.HELP_LICENSE_TEXT,
+    '--name', '-n',
     default='MIT',
     type=click.Choice(
         valid_licenses,
         case_sensitive=False
         )
     )
-def writelicense(lic):
+def writelicense(name):
     """Creates a license file based on user input. Accepted license values are:
         * MIT
         * BSD
@@ -48,16 +47,18 @@ def writelicense(lic):
     """
     global valid_licenses
     try:
-        if lic not in valid_licenses:
-            raise Exception(f'{lic} {constants.STR_INVALID_LICENSE}')
+        if name not in valid_licenses:
+            raise Exception(f'{name} {constants.STR_INVALID_LICENSE}')
         year = date.today().year
         holder = input(f'{constants.STR_ENTER_NAME}\n')
         lic_string = ''
-        match lic:
+        match name:
             case 'MIT':
                 lic_string = license.mit(year, holder)
+            case 'BSD':
+                lic_string = license.bsd(year, holder)
             case _:
-                raise Exception(f'{constants.STR_NO_LICENSE}, {lic}.')
+                raise Exception(f'{constants.STR_NO_LICENSE}, {name}.')
         content.make_license(lic_string)
     except Exception as ex:
         echo(f'{constants.STR_ERROR} {ex}')
@@ -97,7 +98,7 @@ def new(project_name, font_name, sphinx, locale, lic):
         if sphinx:
             struts.make_docs()
         if locale:
-            struts.make_locales()
+            struts.make_locales
     except Exception as ex:
         echo(f'{constants.STR_ERROR} {ex}')
     writelicense(lic)

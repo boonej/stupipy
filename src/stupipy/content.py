@@ -49,5 +49,7 @@ def make_license(license):
     :type license: String
 
     """
+    lines = license.split('\n')
     with open('LICENSE.rst', 'w') as file:
-        file.write(license)
+        for line in lines:
+            file.write(f'        {line}\n')
