@@ -39,7 +39,7 @@ folder structure by executing:
 
 .. code-block:: console
 
-  stupipy -p mysweetproject
+  stupipy new -p mysweetproject
 
 A folder structure will be created with all the files required to distribute
 your project to pypi. If you have additional needs, stupipy supports the
