@@ -13,7 +13,9 @@ FILE_INIT = '__init__.py'
 
 STR_FOLDER_EXISTS = _('Folder exists at')
 STR_ERROR = _('Error:')
+STR_ENTER_NAME = _('Enter your personal or company name.')
 STR_NO_LICENSE = _('No license matches your input:')
+STR_INVALID_LICENSE = _('is not a valid input for license type.')
 
 HELP_PNAME_TEXT = _('Project name to create.')
 HELP_FONT_TEXT = _('Name of pyfiglet font to use for header.')
