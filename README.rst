@@ -48,6 +48,21 @@ following options:
 Font Name
 ```````````
 
-`--font_name -f`
+`--font_name, -f`
   Specifies the *font* for the ASCII art generated for files. See pyfiglet's
   documentation for available fonts.
+`--sphinx, --no-sphinx`
+  Choice to include sphinx documentation folder/structure. **Default is
+  --sphinx**.
+`--locale, no-locale`
+  Choice to include localization folder. **Default is --no-locale**.
+`--licensename, -l`
+  Type of license file to generate. Available options are:
+
+  * MIT
+  * BSD
+  * Apache
+  * ISC
+  * WTFPL
+
+  *Default is MIT*.
