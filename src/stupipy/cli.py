@@ -11,9 +11,7 @@ valid_licenses = [
     'BSD',
     'APACHE',
     'ISC',
-    'LGPL',
-    'GPLV2',
-    'GPLV3',
+    'WTFPL',
     ]
 
 
@@ -37,9 +35,7 @@ def writelicense(name):
         * BSD
         * APACHE
         * ISC
-        * LGPL
-        * GPLV2
-        * GPLV3
+        * WTFPL
 
     :param lic: Type of license.
     :type lic: String
@@ -57,6 +53,12 @@ def writelicense(name):
                 lic_string = license.mit(year, holder)
             case 'BSD':
                 lic_string = license.bsd(year, holder)
+            case 'APACHE':
+                lic_string = license.apache(year, holder)
+            case 'ISC':
+                lic_string = license.isc(year, holder)
+            case 'WTFPL':
+                lic_string = license.wtfpl(year, holder)
             case _:
                 raise Exception(f'{constants.STR_NO_LICENSE}, {name}.')
         content.make_license(lic_string)
@@ -91,6 +93,20 @@ def writelicense(name):
                   valid_licenses,
                   case_sensitive=False))
 def new(project_name, font_name, sphinx, locale, lic):
+    """Short summary.
+
+    :param project_name: Description of parameter `project_name`.
+    :type project_name: type
+    :param font_name: Description of parameter `font_name`.
+    :type font_name: type
+    :param sphinx: Description of parameter `sphinx`.
+    :type sphinx: type
+    :param locale: Description of parameter `locale`.
+    :type locale: type
+    :param lic: Description of parameter `lic`.
+    :type lic: type
+
+    """
     try:
         struts.make_proj_dir(project_name)
         content.make_ascii(project_name, constants.PATH_ASCII, font_name)
