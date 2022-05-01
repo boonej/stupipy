@@ -13,6 +13,7 @@ FILE_INIT = '__init__.py'
 
 STR_FOLDER_EXISTS = _('Folder exists at')
 STR_ERROR = _('Error:')
+STR_NO_PROJECT = _('No project name specified.')
 STR_ENTER_NAME = _('Enter your personal or company name.')
 STR_NO_LICENSE = _('No license matches your input:')
 STR_INVALID_LICENSE = _('is not a valid input for license type.')

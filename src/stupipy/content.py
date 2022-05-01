@@ -1,4 +1,5 @@
 import pyfiglet
+import os
 
 
 def make_ascii(project_name, temp_name, fontname='slant'):
@@ -40,6 +41,7 @@ def make_readme(project_name, readme_path, tempfile_path):
         file.write(f'\n\n{project_name}\n')
         file.write('#' * 79)
         file.write('\n\n')
+    os.remove(tempfile_path)
 
 
 def make_license(license):
