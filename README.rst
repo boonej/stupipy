@@ -49,5 +49,5 @@ Font Name
 ```````````
 
 `--font_name -f`
-Specifies the *font* for the ASCII art generated for files. See pyfiglet's
-documetation for available fonts.
+  Specifies the *font* for the ASCII art generated for files. See pyfiglet's
+  documentation for available fonts.
