@@ -41,7 +41,10 @@ def make_readme(project_name, readme_path, tempfile_path):
         file.write(f'\n\n{project_name}\n')
         file.write('#' * 79)
         file.write('\n\n')
-    os.remove(tempfile_path)
+    try:
+        os.remove(tempfile_path)
+    except Exception as ex:
+        raise Exception(f'{ex} {tempfile_path}.')
 
 
 def make_license(license):
@@ -55,3 +58,13 @@ def make_license(license):
     with open('LICENSE.rst', 'w') as file:
         for line in lines:
             file.write(f'        {line}\n')
+
+
+def make_init(directory):
+    """Generates an empty init file.
+
+    :param type directory: Path to generate init file.
+
+    """
+    with open(os.path.join(directory, '__init__.py'), 'w') as file:
+        file.write('# Silence is compliance.\n\n')

@@ -25,21 +25,4 @@ def make_proj_dir(project_name):
         make_dir(project_name)
     finally:
         chdir(project_name)
-
-
-def make_testdir():
-    """Creates test directory and file structure.
-    """
-    make_dir(constants.PATH_TESTS)
-
-
-def make_locales():
-    """Creates locales directory in main project folder.
-    """
-    make_dir(constants.PATH_LOCALES)
-
-
-def make_docs():
-    """Creates documents directory in root folder.
-    """
-    make_dir(constants.PATH_DOCS)
+        

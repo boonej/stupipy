@@ -8,8 +8,9 @@
                   /_/     /_/    /____/
 
 
+*******************************************************************************
 stupipy
-###############################################################################
+*******************************************************************************
 
 .. note::
   Full disclosure: this project was an exercise. I wanted to get a feel for a
@@ -20,9 +21,8 @@ This project was intended to provide a useful function while I learned
 something new. *Stupipy* generates a project structure that fits my coding
 style standards.
 
-
 Installation
--------------------------------------------------------------------------------
+###############################################################################
 
 To install stupipy, execute:
 
@@ -32,7 +32,7 @@ To install stupipy, execute:
 
 
 Usage
--------------------------------------------------------------------------------
+###############################################################################
 
 You only need a name for your project to get started. Create a no-frills
 folder structure by executing:
@@ -44,9 +44,6 @@ folder structure by executing:
 A folder structure will be created with all the files required to distribute
 your project to pypi. If you have additional needs, stupipy supports the
 following options:
-
-Font Name
-```````````
 
 `--font_name, -f`
   Specifies the *font* for the ASCII art generated for files. See pyfiglet's

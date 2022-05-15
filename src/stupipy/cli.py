@@ -3,6 +3,7 @@ from stupipy import structure as struts
 from stupipy import constants
 from stupipy import content
 from stupipy import license
+from stupipy import sphinx as docs
 from click import echo
 from datetime import date
 
@@ -72,11 +73,15 @@ def new(project_name, font_name, sphinx, locale, licensename):
             constants.PATH_README,
             constants.PATH_ASCII
             )
-        struts.make_testdir()
+        struts.make_dir(project_name)
+        content.make_init(project_name)
+        struts.make_dir(constants.PATH_TESTS)
+        content.make_init(constants.PATH_TESTS)
         if sphinx:
-            struts.make_docs()
+            struts.make_dir(constants.PATH_DOCS)
+            docs.generate_base(constants.PATH_DOCS)
         if locale:
-            struts.make_locales
+            struts.make_dir(constants.PATH_LOCALES)
         if licensename not in valid_licenses:
             raise Exception(f'{licensename} {constants.STR_INVALID_LICENSE}')
         year = date.today().year
