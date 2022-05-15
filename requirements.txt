@@ -1,3 +1,4 @@
 build
 virtualenv
 pyfiglet
+sphinx_rtd_theme
