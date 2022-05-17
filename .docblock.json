@@ -1,0 +1,16 @@
+{
+    "default_desc_text": true,
+    "examples": false,
+    "indent": true,
+    "lint": false,
+    "parameters": true,
+    "quote_type": "double",
+    "raises": false,
+    "returns": true,
+    "style": "sphinx",
+    "types": {
+        "separate_types": false,
+        "use_types": true
+    },
+    "use_defaults": false
+}
