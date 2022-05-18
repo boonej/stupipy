@@ -6,6 +6,7 @@ from stupipy import license
 from stupipy import documentation
 from click import echo
 from datetime import date
+from os import path
 
 valid_licenses = [
     'MIT',
@@ -21,17 +22,7 @@ def base():
     pass
 
 
-@click.command()
-@click.option(
-    '--project-name', '-p',
-    help=constants.HELP_PNAME_TEXT,
-)
-@click.option(
-    '--font_name', '-f',
-    help=constants.HELP_FONT_TEXT,
-    default='slant',
-)
-def readme(project_name, font_name='slant'):
+def readme(project_name, font_name):
     """Generates README file.
 
     :param type project_name: Name of the project.
@@ -39,6 +30,7 @@ def readme(project_name, font_name='slant'):
         fonts in pyfiglet.
 
     """
+    echo(f'{project_name}:{font_name}')
     try:
         content.make_ascii(project_name, constants.PATH_ASCII, font_name)
         content.make_readme(
@@ -58,23 +50,23 @@ def tests():
     content.make_init(constants.PATH_TESTS)
 
 
-def docs():
+def docs(project_name, author, version, language):
     """Generates base documentation structure.
 
     """
     try:
         struts.make_dir(constants.PATH_DOCS)
-        documentation.generate_base(constants.PATH_DOCS)
+        documentation.generate_base(
+            constants.PATH_DOCS,
+            project_name,
+            author,
+            version,
+            language
+            )
     except Exception as ex:
         echo(f'{constants.STR_ERROR} {ex}')
 
 
-@click.command()
-@click.option('--licensename', '-l',
-              default='MIT',
-              type=click.Choice(
-                  valid_licenses,
-                  case_sensitive=False))
 def make_license(licensename):
     """Generates a license file for a project.
 
@@ -112,26 +104,45 @@ def make_license(licensename):
     help=constants.HELP_PNAME_TEXT,
 )
 @click.option(
+    '--author',
+    '-a',
+    help=constants.HELP_AUTHOR_TEXT,
+)
+@click.option(
+    '--version',
+    '-v',
+    help=constants.HELP_VERSION_TEXT,
+    default='0.0.1'
+)
+@click.option(
     '--font_name', '-f',
     help=constants.HELP_FONT_TEXT,
     default='slant',
-)
-@click.option(
-  '--sphinx/--no-sphinx',
-  default=True,
-  help=constants.HELP_SPHINX_TEXT,
 )
 @click.option(
   '--locale/--no-locale',
   default=False,
   help=constants.HELP_LOCALE_TEXT,
 )
+@click.option(
+  '--language',
+  default='en',
+  help=constants.HELP_LANGUAGE_TEXT,
+)
 @click.option('--licensename', '-l',
               default='MIT',
               type=click.Choice(
                   valid_licenses,
                   case_sensitive=False))
-def new(project_name, font_name, sphinx, locale, licensename):
+def new(
+        project_name,
+        author,
+        version,
+        font_name='slant',
+        locale=False,
+        licensename='MIT',
+        language='en'
+        ):
     """Creates a new project with all the trimmings.
 
     :param project_name: Name of project.
@@ -152,17 +163,14 @@ def new(project_name, font_name, sphinx, locale, licensename):
             raise Exception(f'{constants.STR_NO_PROJECT}')
         struts.make_proj_dir(project_name)
 
-        struts.make_dir(project_name)
+        struts.make_dir(path.join('src/', project_name))
         content.make_init(project_name)
         tests()
         struts.make_dir(constants.PATH_LOCALES)
     except Exception as ex:
         echo(f'{constants.STR_ERROR} {ex}')
     readme(project_name, font_name)
-    if sphinx:
-        docs()
     make_license(licensename)
 
 
-base.add_command(readme)
 base.add_command(new)
